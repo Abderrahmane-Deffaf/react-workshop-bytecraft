@@ -1,8 +1,13 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
+import { userContext } from "../../AuthContext";
+import {  useNavigate } from "react-router-dom";
 
 const SigninForm = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const naviagete = useNavigate();
+
+  const { setUser } = useContext(userContext);
 
   function handleSubmit(e) {
     e.preventDefault();
@@ -21,13 +26,29 @@ const SigninForm = () => {
         body: JSON.stringify(obj),
       })
         .then((res) => res.json())
-        .then((data) => console.log(data));
+        .then((data) => {
+          console.log(data);
+
+          if (data?.message) {
+            alert("error");
+            return;
+          }
+          console.log("here");
+
+          setUser(data);
+          naviagete("/main");
+        });
     } catch (error) {
       console.log(error);
     }
     console.log(email, password);
   }
 
+  /* 
+  username: 'kminchelle',
+    password: '0lelplR',
+
+  */
   return (
     <section className=" w-[48%] px-4">
       <h1>Log in to your account</h1>
