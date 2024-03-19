@@ -3,7 +3,7 @@ import { Outlet } from "react-router-dom";
 export const userContext = createContext();
 
 const AuthContext = () => {
-  const [user, setUser] = useState(null);
+  const [user, setUser] = useState(true);
 
   return (
     <userContext.Provider value={{ user, setUser }}>

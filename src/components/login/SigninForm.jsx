@@ -1,6 +1,6 @@
 import { useContext, useState } from "react";
 import { userContext } from "../../AuthContext";
-import {  useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 const SigninForm = () => {
   const [email, setEmail] = useState("");
@@ -8,6 +8,7 @@ const SigninForm = () => {
   const naviagete = useNavigate();
 
   const { setUser } = useContext(userContext);
+  console.log("i am rerendered");
 
   function handleSubmit(e) {
     e.preventDefault();

@@ -5,6 +5,13 @@ import Home from "./routes/Home";
 import AuthContext from "./AuthContext";
 import ProtectedRoute from "./ProtectedRoute";
 import Studnet from "./routes/Studnet";
+import {
+  QueryClient,
+  QueryClientProvider,
+} from "@tanstack/react-query";
+import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
+
+const queryClient = new QueryClient();
 
 const router = createBrowserRouter([
   {
@@ -23,7 +30,10 @@ const router = createBrowserRouter([
         path: "",
         element: (
           <ProtectedRoute>
-            <Home />
+            <QueryClientProvider client={queryClient}>
+              <Home />
+              <ReactQueryDevtools initialIsOpen={false} />
+            </QueryClientProvider>
           </ProtectedRoute>
         ),
         children: [
@@ -38,7 +48,7 @@ const router = createBrowserRouter([
             path: "ann",
           },
           {
-            element: <Studnet/>,
+            element: <Studnet />,
             path: "student",
           },
         ],

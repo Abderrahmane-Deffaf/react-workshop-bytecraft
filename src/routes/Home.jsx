@@ -1,5 +1,5 @@
 import { useContext } from "react";
-import { Outlet } from "react-router-dom";
+import { Link, Outlet } from "react-router-dom";
 import { userContext } from "../AuthContext";
 import { useNavigate } from "react-router-dom";
 
@@ -9,7 +9,10 @@ const Home = () => {
 
   return (
     <div className=" flex">
-      <p className=" h-screen w-[20rem] bg-blue-300 text-black">
+      <p className=" h-screen w-[20rem] flex flex-col gap-3 text-center bg-blue-300 text-black">
+        <Link to={"main"}>main</Link>
+        <Link to={"ann"}>ann</Link>
+        <Link to={"student"}>student</Link>
         <button
           onClick={() => {
             setUser(null);
